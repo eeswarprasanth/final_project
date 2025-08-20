@@ -55,6 +55,9 @@ public class WishList {
 
 	@FindBy(id = "add-to-cart-button")
 	WebElement addToCart;
+	
+	@FindBy(id = "checkout-link")
+	WebElement checkOut;
 
 	public void wishList() {
 		// Step 1: Search and open product
@@ -93,5 +96,9 @@ public class WishList {
 		// Step 8: Add to cart using JS click
 		wait.until(ExpectedConditions.elementToBeClickable(addToCart));
 		jsClick(addToCart);
+		
+		// Step 9: Click Check Out
+		wait.until(ExpectedConditions.elementToBeClickable(checkOut));
+		jsClick(checkOut);
 	}
 }
