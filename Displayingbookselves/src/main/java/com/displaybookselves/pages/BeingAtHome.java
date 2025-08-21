@@ -3,6 +3,7 @@ package com.displaybookselves.pages;
 import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -43,22 +44,25 @@ public class BeingAtHome {
 		search.sendKeys(ConfigReader.getSeachWord());
 		searchBtn.click();
 
-		popupHandler.closePopupIfVisible();
-
 		wait.until(ExpectedConditions.visibilityOf(catBtn));
 
 		// Hover over the category dropdown
 		Actions action = new Actions(driver);
 		action.moveToElement(catBtn).perform();
 
-		wait.until(ExpectedConditions.visibilityOfAllElements(categoryOptions));
+		// Wait for the category list container
+		wait.until(ExpectedConditions
+				.presenceOfElementLocated(By.cssSelector("ul.clearfix.options[data-filter-name='primary_category']")));
+
+		// Wait for all category options to be visible
+		List<WebElement> categories = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+				By.cssSelector("ul.clearfix.options[data-filter-name='primary_category'] li.option")));
 
 		System.out.println("Available Categories:");
-		for (WebElement category : categoryOptions) {
+		for (WebElement category : categories) {
 			String categoryName = category.getAttribute("data-option-name");
 			System.out.println("- " + categoryName);
 		}
-
 	}
 
 }

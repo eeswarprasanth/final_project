@@ -48,8 +48,8 @@ public class Homepage {
 	@FindBy(xpath = "//html/body/div[1]/header/div[2]/div/nav/div/ul/li[4]/span")
 	private WebElement Living;
 
-	@FindBy(xpath = "/html/body/div[1]/header/div[2]/div/nav/div/ul/li[4]/div/div/ul/li[2]/ul/li[2]/a/span")
-	private WebElement bookshelve;
+//	@FindBy(xpath = "/html/body/div[1]/header/div[2]/div/nav/div/ul/li[4]/div/div/ul/li[2]/ul/li[2]/a/span")
+//	private WebElement bookshelve;
 
 	public void LoginIcon() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
